@@ -59,21 +59,31 @@ public class MemberList {
 
             }
 
+
+
             System.out.println("Er medlemmet en konkurrencesvømmer? (ja/nej)");
             String compSwimmerInput = scanner.nextLine();
             if (compSwimmerInput.equalsIgnoreCase("ja")) {
                 isCompSwimmer = true;
                 member.setIsCompSwimmer(true);
 
-                System.out.println("Indtast svømmediscipliner for konkurrencesvømmeren (adskilt med komma)");
+                System.out.println("Indtast svømmediscipliner for konkurrencesvømmeren (adskilt med komma) \n Mulige svømmediscipliner: backstroke, breaststroke, butterfly, crawl");
+
                 String swimDisciplinesInput = scanner.nextLine();
-                String[] SwimDisciplinesArrayList = swimDisciplinesInput.split(",");
+                String[] disciplinesArray = swimDisciplinesInput.split(",");
                 ArrayList<String> swimDisciplines = new ArrayList<String>();
 
-                for (String disciplines : SwimDisciplinesArrayList) {
-                    swimDisciplines.add(disciplines.trim());
+                for (String disciplines : disciplinesArray) {
+                    String trimmedDiscipline = disciplines.trim().toLowerCase();
+                    if (Member.SwimDisciplineUtil.VALID_DISCIPLINES.contains(trimmedDiscipline)) {
+                        swimDisciplines.add(trimmedDiscipline);
+                    } else {
+                        System.out.println("Ugyldig disciplin indtastet: '" + trimmedDiscipline + "'");
+                    }
+
                 }
                 member.setSwimDisciplines(swimDisciplines);
+                System.out.println("Følgende discipliner er tilføjet: " + swimDisciplines);
 
 
             } else {
@@ -81,8 +91,10 @@ public class MemberList {
             }
 
 
-            /** mulighed for at tilføje svømmediscipliner her
-             **/
+
+
+
+
 
 
             break;

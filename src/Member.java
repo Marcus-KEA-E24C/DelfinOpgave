@@ -2,6 +2,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Member {
     private String name;
@@ -134,5 +138,14 @@ public class Member {
             System.out.println("Kunne ikke læse medlemmer fra filen: " + e.getMessage());
         }
     }
+
+
+    public class SwimDisciplineUtil {
+        public static final Set<String> VALID_DISCIPLINES = new HashSet<>(Arrays.asList(
+                "crawl", "backstroke", "breaststroke", "butterfly"
+        ));
+    }
+
+
 }
 
