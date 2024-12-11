@@ -1,0 +1,7 @@
+Name;AgeGroup;Active;CompSwimmer;Fee
+Hold nu kæft;SENIOR;true;true;1600
+jashd;PENSIONIST;true;false;1200
+asd;SENIOR;true;true;1600
+vcxxgfhfgc;SENIOR;true;true;1600
+xcv;PENSIONIST;true;false;1200
+trdftyrdtf;SENIOR;true;true;1600
