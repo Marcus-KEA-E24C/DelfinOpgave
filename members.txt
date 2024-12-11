@@ -1,0 +1,5 @@
+Name;AgeGroup;Active;CompSwimmer;Fee
+Haj;JUNIOR;true;false;1000
+jannick;JUNIOR;true;false;1000
+anna banana;SENIOR;true;true;1600
+Fede Fe;SENIOR;true;false;1600

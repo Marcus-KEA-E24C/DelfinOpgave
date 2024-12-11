@@ -18,7 +18,7 @@ public class Member {
 
 
 
-    public  Member(String name, String ageGroup, boolean isActive, boolean isCompSwimmer){
+    public Member(String name, String ageGroup, boolean isActive, boolean isCompSwimmer){
         this.name=name;
         this.ageGroup=ageGroup;
         this.isActive=isActive;
@@ -52,8 +52,13 @@ public class Member {
     public boolean isActive(){
         return isActive;
     }
+
+    public boolean getIsActive(){
+        return this.isActive;
+    }
+
     public void setIsActive(boolean isActive){
-        this.isActive=isActive;
+        this.isActive = isActive;
     }
     public boolean isCompSwimmer(){
         return isCompSwimmer;
