@@ -17,9 +17,8 @@ public class ConsoleHandler {
             System.out.println("Indtast venligst hvilken opgave, du vil have udført");
             System.out.println("1. Se medlemsliste");
             System.out.println("2. Opret nyt medlem");
-            System.out.println("3. Vis Træningsresultater");
-            System.out.println("4. Vis Konkurrenceresultater");
-            System.out.println("5. Vis kontingentoversigt");
+            System.out.println("3. Vis konkurrencesvømmeroversigt");
+            System.out.println("4. Vis kontingentoversigt");
             System.out.println("x. Luk SPLASH");
 
             String consoleHandlerMenu = scanner.nextLine();
@@ -130,19 +129,15 @@ public class ConsoleHandler {
                 case "2":
                     memberList.addMember();
                     break;
-                //Vis Træningsresultater
+                //Vis konkurrencesvømmeroversigt
                 case "3":
-
-
-                    break;
-
-                //Vis Konkurrenceresultater
-                case "4":
+// til konkurrencesvømmerinfo, træningsresultater, konkurrenceresultater
 
                     break;
+
 
                 //Vis kontingentoversigt
-                case "5":
+                case "4":
 
 
                     break;
