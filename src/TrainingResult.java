@@ -1,19 +1,24 @@
 public class TrainingResult {
 
     private String discipline;
-    private double bestTrainingTime;
+    private int bestTrainingTimeSeconds;
+    private int bestTrainingTimeCentiSeconds;
     private String date;
 
-    public TrainingResult(String discipline, double bestTrainingTime, String date) {
+    public TrainingResult(String discipline, int bestTrainingTimeSeconds, int bestTrainingTimeCentiSeconds, String date) {
         if (!Member.SwimDisciplineUtil.VALID_DISCIPLINES.contains(discipline.toLowerCase())) {
             throw new IllegalArgumentException("Ugyldig disciplin indtastet: '" + discipline + "'");
         }
         this.discipline = discipline;
-        this.bestTrainingTime = bestTrainingTime;
+        this.bestTrainingTimeSeconds = bestTrainingTimeSeconds;
+        this.bestTrainingTimeCentiSeconds = bestTrainingTimeCentiSeconds;
         this.date = date;
 
 
     }
+
+
+
 
     public String getDiscipline() {
         return discipline;
@@ -23,13 +28,27 @@ public class TrainingResult {
         this.discipline = discipline;
     }
 
-    public double getBestTime() {
-        return bestTrainingTime;
+    public int getBestTrainingTimeSeconds() {
+        return bestTrainingTimeSeconds;
+
     }
 
-    public void setBestTime(double bestTime) {
-        this.bestTrainingTime = bestTime;
+    public void setBestTrainingTimeSeconds(int bestTime) {
+        this.bestTrainingTimeSeconds = bestTime;
     }
+
+
+    public int getBestTrainingTimeCentiSeconds() {
+        return bestTrainingTimeCentiSeconds;
+
+    }
+
+    public void setBestTrainingTimeCentiSeconds(int bestTime) {
+        this.bestTrainingTimeCentiSeconds = bestTime;
+    }
+
+
+
 
     public String getDate() {
         return date;
@@ -40,10 +59,11 @@ public class TrainingResult {
     }
 
 
+
 @Override
     public String toString()
 {
-    return "Bedste træningstid for den valgt svømmer: \n Disciplin " + discipline + " , tid: " + bestTrainingTime + ", dato: " + date;
+    return "Bedste træningstid for den valgt svømmer: \n Disciplin " + discipline + " , tid: " + bestTrainingTimeSeconds + ":" + bestTrainingTimeCentiSeconds + ", dato: " + date;
 }
 
 
