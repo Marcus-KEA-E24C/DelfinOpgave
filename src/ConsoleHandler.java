@@ -143,7 +143,7 @@ public class ConsoleHandler {
                         /**
 
 
-
+..
 
                          System.out.println("Vælg en handling:");
                          String memberListChoices = scanner.nextLine();
