@@ -67,7 +67,13 @@ public class MemberList {
 
                 System.out.println("Indtast svømmediscipliner for konkurrencesvømmeren (adskilt med komma)");
                 String swimDisciplinesInput = scanner.nextLine();
+                String[] SwimDisciplinesArrayList = swimDisciplinesInput.split(",");
+                ArrayList<String> swimDisciplines = new ArrayList<String>();
 
+                for (String disciplines : SwimDisciplinesArrayList) {
+                    swimDisciplines.add(disciplines.trim());
+                }
+                member.setSwimDisciplines(swimDisciplines);
 
 
             } else {
