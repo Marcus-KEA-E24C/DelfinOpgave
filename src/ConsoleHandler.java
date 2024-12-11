@@ -101,9 +101,16 @@ public class ConsoleHandler {
                                     }
                                     break;
 
+                                //Ændre medlemsstatus
+                                case "3":
+                                    System.out.print("Indtast navnet på medlemmet, der skal slettes: ");
+                                    String nameToChangeActivityStatus = scanner.nextLine();
+                                    memberList.removeMember(nameToChangeActivityStatus);
+                                    break;
+
 
                                 //Slette medlem
-                                case "3":
+                                case "4":
                                     System.out.print("Indtast navnet på medlemmet, der skal slettes: ");
                                     String nameToRemove = scanner.nextLine();
                                     memberList.removeMember(nameToRemove);
