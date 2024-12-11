@@ -134,12 +134,35 @@ public class ConsoleHandler {
 // til konkurrencesvømmerinfo, træningsresultater, konkurrenceresultater
 // her skal hentes fra klassen CompSwimmer
 
+                    System.out.println("1. Se konkurrencesvømmeres info");
+                    System.out.println("2. Se bedste træningstider");
+                    System.out.println("3. Se bedste konkurrencetider");
+
+
+
+                        /**
+
+
+
+
+                         System.out.println("Vælg en handling:");
+                         String memberListChoices = scanner.nextLine();
+                         switch (memberListChoices) {
+                         //Tilføj medlem
+                         case "1":
+                         memberList.addMember();
+                         break;
+
+
+
+
+                         **/
+
                     break;
 
 
                 //Vis kontingentoversigt
                 case "4":
-
 
                     break;
 
