@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MemberList {
@@ -127,6 +129,7 @@ public class MemberList {
         } else {
             System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
         }
+
     }
 
     @Override
@@ -137,5 +140,39 @@ public class MemberList {
         }
         return listStr.toString();
     }
+    public void saveToFile(String filename) {
+        try {
+            FileHandler.saveMembersToFile(this.list, filename);
+            System.out.println("Medlemmer er gemt til filen '" + filename + "'.");
+        } catch (IOException e) {
+            System.out.println("Kunne ikke gemme medlemmer: " + e.getMessage());
+        }
+    }
 
-}
+    public void loadFromFile(String filename) {
+        try {
+            List<Member> loadedMembers = FileHandler.readMembersFromFile(filename);
+            this.list.clear(); // Ryd listen
+            this.list.addAll(loadedMembers); // Tilføj alle medlemmer fra filen
+            System.out.println("Medlemmer er indlæst fra filen '" + filename + "'.");
+        } catch (IOException e) {
+            System.out.println("Kunne ikke læse medlemmer: " + e.getMessage());
+        }
+    }
+
+        private ArrayList<Member> members = new ArrayList<>();
+
+        // Eksisterende metoder som addMember, editName osv.
+
+        public void editActivityStatus(String name, boolean newStatus) {
+            for (Member member : members) {
+                if (member.getName().equalsIgnoreCase(name)) {
+                    member.setIsActive(newStatus);
+                    System.out.println("Aktivitetsstatus for " + name + " er opdateret til: " + (newStatus ? "Aktiv" : "Inaktiv"));
+                    return;
+                }
+            }
+            System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
+        }
+    }
+

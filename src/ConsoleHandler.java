@@ -1,160 +1,148 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class ConsoleHandler {
-    private static MemberList memberList  = new MemberList();;
-
+    private static MemberList memberList = new MemberList();
+    private static Scanner scanner = new Scanner(System.in);
+    private static void showFeeOverview() {
+        Fee.displayFeeOverview(memberList.list);
+    }
 
     public static void startMenu() {
-        //MemberList memberList = new MemberList();
+        memberList.loadFromFile("members.txt");
+        System.out.println("\nVelkommen til Delfinens konkurrence-, kontingent- og medlemssystem\n" +
+                "SPLASH - Simplifying Planning and Logistics for Aquatic Sports and Handling\n");
 
-        System.out.println("\nVelkommen til Delfinens konkurrence-, kontingent- og medlemssystem\nSPLASH - Simplifying Planning and Logistics for Aquatic Sports and Handling\n");
-        Scanner scanner = new Scanner(System.in);
         boolean mainMenuRunning = true;
 
-
         while (mainMenuRunning) {
-            System.out.println("Indtast venligst hvilken opgave, du vil have udført");
-            System.out.println("1. Se medlemsliste");
-            System.out.println("2. Opret nyt medlem");
-            System.out.println("3. Vis Træningsresultater");
-            System.out.println("4. Vis Konkurrenceresultater");
-            System.out.println("5. Vis kontingentoversigt");
-            System.out.println("x. Luk SPLASH");
+            showMainMenu();
+            String choice = scanner.nextLine();
 
-            String consoleHandlerMenu = scanner.nextLine();
-
-            String name = "";
-            String ageGroup = "";
-            boolean active = true;
-            boolean compSwimmer = false;
-
-            switch (consoleHandlerMenu) {
+            switch (choice) {
                 case "1":
-                    System.out.println(memberList);
-
-                    System.out.println("1. Tilføje nyt medlem");
-                    System.out.println("2. Redigere medlemsinfo");
-                    System.out.println("3. Slette medlem");
-                    System.out.println("x. Gå tilbage");
-
-                    boolean memberListLoop = true;
-
-
-                    System.out.println("Vælg en handling:");
-                    String memberListChoices = scanner.nextLine();
-                    switch (memberListChoices) {
-                        //Tilføj medlem
-                        case "1":
-                            memberList.addMember();
-                            break;
-                        //Rediger medlemsinfo
-                        case "2":
-                            System.out.println("1. Ændre medlemmets navn");
-                            System.out.println("2. Ændre medlemmets aldersgruppe");
-                            System.out.println("3. Ændre medlemmets aktivitetsstatus");
-                            System.out.println("x. Luk Medlemsinfo");
-
-                            System.out.println("Vælg en handling:");
-                            String editMemberChoice = scanner.nextLine();
-
-
-                            switch (editMemberChoice) {
-
-                                case "1":
-                                    System.out.print("Indtast navnet på medlemmet, der skal redigeres: ");
-                                    String oldName = scanner.nextLine();
-                                    System.out.print("Indtast det nye navn: ");
-                                    String newName = scanner.nextLine();
-                                    memberList.editName(oldName, newName);
-                                    break;
-
-                                case "2": // Rediger aldersgruppe
-                                    System.out.print("Indtast navnet på medlemmet, der skal redigeres: ");
-                                    String searchName = scanner.nextLine();
-                                    System.out.println("Indtast den nye aldersgruppe: ");
-                                    System.out.println("1. JUNIOR");
-                                    System.out.println("2. SENIOR");
-                                    System.out.println("3. PENSIONIST");
-
-                                    int ageGroupChoice = scanner.nextInt();
-                                    scanner.nextLine(); // Ryd bufferen efter nextInt()
-
-                                    String newAgeGroup = "";
-                                    switch (ageGroupChoice) {
-                                        case 1:
-                                            newAgeGroup = "JUNIOR";
-                                            break;
-                                        case 2:
-                                            newAgeGroup = "SENIOR";
-                                            break;
-                                        case 3:
-                                            newAgeGroup = "PENSIONIST";
-                                            break;
-                                        default:
-                                            System.out.println("Ugyldigt valg.");
-                                            break;
-                                    }
-
-                                    if (!newAgeGroup.isEmpty()) {
-                                        memberList.editAgeGroup(searchName, newAgeGroup);
-                                    }
-                                    break;
-
-
-                                //Slette medlem
-                                case "3":
-                                    System.out.print("Indtast navnet på medlemmet, der skal slettes: ");
-                                    String nameToRemove = scanner.nextLine();
-                                    memberList.removeMember(nameToRemove);
-                                    break;
-
-                                //Luk Medlemsliste
-                                case "x":
-                                    memberListLoop = false;
-                                    break;
-                                default:
-                                    System.out.println("Ugyldigt valg, prøv igen");
-                            }
-                            break;
-
-                    }
-                    //Opret medlem
+                    handleMemberListMenu();
+                    break;
                 case "2":
                     memberList.addMember();
                     break;
-                //Vis Træningsresultater
                 case "3":
-
-
+                    memberList.saveToFile("members.txt");
                     break;
-
-                //Vis Konkurrenceresultater
                 case "4":
-
+                    memberList.loadFromFile("members.txt");
                     break;
-
-                //Vis kontingentoversigt
                 case "5":
-
-
+                    showFeeOverview();
                     break;
-
-                //Luk SPLASH
                 case "x":
                     mainMenuRunning = false;
                     System.out.println("Tak for besøget!");
+                    memberList.saveToFile("members.txt");
                     break;
-
                 default:
-                    System.out.println("Ugyldigt valg, prøv igen");
+                    System.out.println("Ugyldigt valg, prøv igen.");
             }
-
         }
 
         scanner.close();
-
     }
 
+    private static void showMainMenu() {
+        System.out.println("\nIndtast venligst hvilken opgave, du vil have udført:");
+        System.out.println("1. Se medlemsliste");
+        System.out.println("2. Opret nyt medlem");
+        System.out.println("3. Gem medlemmer til fil");
+        System.out.println("4. Indlæs medlemmer fra fil");
+        System.out.println("5. Vis kontingentoversigt");
+        System.out.println("x. Luk SPLASH");
+    }
 
+    private static void handleMemberListMenu() {
+        boolean memberListMenuRunning = true;
+
+        while (memberListMenuRunning) {
+            showMemberListMenu();
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    memberList.addMember();
+                    break;
+                case "2":
+                    editMember();
+                    break;
+                case "3":
+                    System.out.print("Indtast navnet på medlemmet, der skal slettes: ");
+                    String nameToRemove = scanner.nextLine();
+                    memberList.removeMember(nameToRemove);
+                    break;
+                case "x":
+                    memberListMenuRunning = false;
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+            }
+        }
+    }
+
+    private static void showMemberListMenu() {
+        System.out.println("\nMedlemsliste:");
+        System.out.println(memberList);
+        System.out.println("1. Tilføj nyt medlem");
+        System.out.println("2. Rediger medlemsinfo");
+        System.out.println("3. Slet medlem");
+        System.out.println("x. Gå tilbage til hovedmenu");
+    }
+
+    private static void editMember() {
+        System.out.print("Indtast navnet på medlemmet, der skal redigeres: ");
+        String name = scanner.nextLine();
+
+        System.out.println("\nHvad vil du redigere?");
+        System.out.println("1. Navn");
+        System.out.println("2. Aldersgruppe");
+        System.out.println("3. Aktivitetsstatus");
+        System.out.println("x. Afslut redigering");
+
+        String editChoice = scanner.nextLine();
+
+        switch (editChoice) {
+            case "1":
+                System.out.print("Indtast det nye navn: ");
+                String newName = scanner.nextLine();
+                memberList.editName(name, newName);
+                break;
+            case "2":
+                System.out.println("Indtast den nye aldersgruppe:");
+                System.out.println("1. JUNIOR");
+                System.out.println("2. SENIOR");
+                System.out.println("3. PENSIONIST");
+                int ageGroupChoice = scanner.nextInt();
+                scanner.nextLine(); // Ryd input-bufferen
+                String newAgeGroup = switch (ageGroupChoice) {
+                    case 1 -> "JUNIOR";
+                    case 2 -> "SENIOR";
+                    case 3 -> "PENSIONIST";
+                    default -> {
+                        System.out.println("Ugyldigt valg.");
+                        yield "";
+                    }
+                };
+                if (!newAgeGroup.isEmpty()) {
+                    memberList.editAgeGroup(name, newAgeGroup);
+                }
+                break;
+            case "3":
+                System.out.print("Indtast aktivitetsstatus (true for aktiv, false for inaktiv): ");
+                boolean newStatus = scanner.nextBoolean();
+                scanner.nextLine(); // Ryd input-bufferen
+                memberList.editActivityStatus(name, newStatus);
+                break;
+            case "x":
+                System.out.println("Redigering annulleret.");
+                break;
+            default:
+                System.out.println("Ugyldigt valg, prøv igen.");
+        }
+    }
 }
