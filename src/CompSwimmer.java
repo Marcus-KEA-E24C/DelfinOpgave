@@ -1,0 +1,2 @@
+public class CompSwimmer {
+}

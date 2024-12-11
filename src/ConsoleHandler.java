@@ -26,7 +26,7 @@ public class ConsoleHandler {
             String name = "";
             String ageGroup = "";
             boolean active = true;
-            boolean compSwimmer = false;
+            boolean isCompSwimmer = false;
 
             switch (consoleHandlerMenu) {
                 case "1":
@@ -132,6 +132,7 @@ public class ConsoleHandler {
                 //Vis konkurrencesvømmeroversigt
                 case "3":
 // til konkurrencesvømmerinfo, træningsresultater, konkurrenceresultater
+// her skal hentes fra klassen CompSwimmer
 
                     break;
 
