@@ -12,7 +12,7 @@ public class MemberList {
     public MemberList() {
         this.list = new ArrayList<Member>();
     }
-
+/*
     //Metode, der tilføjer Member til MemberList
     public void addMember() {
         Scanner scanner = new Scanner(System.in);
@@ -88,10 +88,117 @@ public class MemberList {
             member.setIsCompSwimmer(false);
         }
 
-        // Tilføj medlem til listen
+        // Indlæser eksisterende medlemmer fra filen
+        try {
+            List<Member> existingMembers = FileHandler.readMembersFromFile("members.txt");
+            // Undgå dubletter, hvis medlemmet allerede findes i filen
+            if (!existingMembers.contains(member)) {
+                existingMembers.add(member); // Tilføj det nye medlem til den eksisterende liste
+
+                // Gem den opdaterede liste til filen
+                FileHandler.saveMembersToFile(existingMembers, "members.txt");
+                System.out.println("Medlem tilføjet: " + member);
+            } else {
+                System.out.println("Medlemmet eksisterer allerede i systemet.");
+            }
+        } catch (IOException e) {
+            System.out.println("Der opstod en fejl under læsning eller skrivning til filen: " + e.getMessage());
+        }
+
+        // Tilføjer medlem til listen
         list.add(member);
 
         System.out.println("Medlem tilføjet: " + member);
+    }*/
+
+    public void addMember() {
+        Scanner scanner = new Scanner(System.in);
+        String name = "";
+        String ageGroup = "";
+        boolean isActive = true;
+        boolean isCompSwimmer = false;
+
+        // Opret et nyt medlem
+        Member member = new Member(name, ageGroup, isActive, isCompSwimmer);
+
+        // Indtast medlemmets fulde navn
+        System.out.println("Indtast medlemmets fulde navn: ");
+        name = scanner.nextLine();
+        member.setName(name);
+
+        // Indtast aldersgruppe med korrekt validering
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.println("Indtast medlemmets aldersgruppe: ");
+            System.out.println("1. JUNIOR");
+            System.out.println("2. SENIOR");
+            System.out.println("3. PENSIONIST");
+            String addMemberAgeChoice = scanner.nextLine();
+
+            switch (addMemberAgeChoice) {
+                case "1":
+                    member.setAgeGroup("JUNIOR");
+                    validInput = true;
+                    break;
+                case "2":
+                    member.setAgeGroup("SENIOR");
+                    validInput = true;
+                    break;
+                case "3":
+                    member.setAgeGroup("PENSIONIST");
+                    validInput = true;
+                    break;
+                default:
+                    System.out.println("Ugyldig indtastning, prøv igen.");
+            }
+        }
+
+        // Spørg om konkurrencesvømmerstatus
+        System.out.println("Er medlemmet en konkurrencesvømmer? (ja/nej)");
+        String compSwimmerInput = scanner.nextLine();
+        if (compSwimmerInput.equalsIgnoreCase("ja")) {
+            isCompSwimmer = true;
+            member.setIsCompSwimmer(true);
+
+            // Indtast svømmediscipliner for konkurrencesvømmeren
+            System.out.println("Indtast svømmediscipliner for konkurrencesvømmeren (adskilt med komma) \n" +
+                    "Mulige svømmediscipliner: backstroke, breaststroke, butterfly, crawl");
+            String swimDisciplinesInput = scanner.nextLine();
+            String[] disciplinesArray = swimDisciplinesInput.split(",");
+            ArrayList<String> swimDisciplines = new ArrayList<>();
+
+            for (String discipline : disciplinesArray) {
+                String trimmedDiscipline = discipline.trim().toLowerCase();
+                if (Member.SwimDisciplineUtil.VALID_DISCIPLINES.contains(trimmedDiscipline)) {
+                    swimDisciplines.add(trimmedDiscipline);
+                } else {
+                    System.out.println("Ugyldig disciplin indtastet: '" + trimmedDiscipline + "'");
+                }
+            }
+            member.setSwimDisciplines(swimDisciplines);
+            System.out.println("Følgende discipliner er tilføjet: " + swimDisciplines);
+        } else {
+            member.setIsCompSwimmer(false);
+        }
+
+        // Tilføjer medlem til listen
+        list.add(member);
+
+        // Indlæser eksisterende medlemmer fra filen
+        try {
+            List<Member> existingMembers = FileHandler.readMembersFromFile("members.txt");
+
+            // Undgå dubletter, hvis medlemmet allerede findes i filen
+            if (!existingMembers.contains(member)) {
+                existingMembers.add(member); // Tilføj det nye medlem til den eksisterende liste
+                FileHandler.saveMembersToFile(existingMembers, "members.txt");
+                System.out.println("Medlem tilføjet: " + member);
+            } else {
+                System.out.println("Medlemmet eksisterer allerede i systemet.");
+            }
+        } catch (IOException e) {
+            System.out.println("Der opstod en fejl under læsning eller skrivning til filen: " + e.getMessage());
+        }
     }
 
     //Fjerner medlem
@@ -176,17 +283,33 @@ public class MemberList {
             System.out.println("Kunne ikke gemme medlemmer: " + e.getMessage());
         }
     }
-
+/*
     public void loadFromFile(String filename) {
         try {
             List<Member> loadedMembers = FileHandler.readMembersFromFile(filename);
-            this.list.clear(); // Ryd listen
+
             this.list.addAll(loadedMembers); // Tilføj alle medlemmer fra filen
             System.out.println("Medlemmer er indlæst fra filen '" + filename + "'.");
         } catch (IOException e) {
             System.out.println("Kunne ikke læse medlemmer: " + e.getMessage());
         }
 
-    }
+    }*/
 
+
+    public void loadFromFile(String filename) {
+        try {
+            List<Member> loadedMembers = FileHandler.readMembersFromFile(filename);
+
+            for (Member loadedMember : loadedMembers) {
+                // Undgå at tilføje dubletter
+                if (!list.contains(loadedMember)) {
+                    list.add(loadedMember);
+                }
+            }
+            System.out.println("Medlemmer er indlæst fra filen '" + filename + "'.");
+        } catch (IOException e) {
+            System.out.println("Kunne ikke læse medlemmer: " + e.getMessage());
+        }
+    }
 }

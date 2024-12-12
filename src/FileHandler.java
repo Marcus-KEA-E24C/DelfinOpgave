@@ -3,44 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-/*
-public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
-    List<Member> existingMembers = readMembersFromFile(filename); // Læs eksisterende medlemmer fra filen
-
-    // Kombiner eksisterende og nye medlemmer, uden at tilføje dubletter
-    for (Member member : members) {
-        if (!existingMembers.contains(member)) { // Antager, at Member har en korrekt `equals`-metode
-            existingMembers.add(member);
-        }
-    }
-
-    // Skriv alle medlemmer tilbage til filen (overskriv med komplet liste)
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-        // Skriv tabeloverskrift
-        writer.write(String.format("%-20s %-10s %-6s %-12s %-4s %-10s %-20s",
-                "Name", "AgeGroup", "Active", "CompSwimmer", "Fee", "Restance", "Discipline"));
-        writer.newLine();
-        writer.write("=".repeat(85)); // Separator-linje
-        writer.newLine();
-
-        // Skriv data for hvert medlem
-        for (Member member : existingMembers) {
-            writer.write(String.format("%-20s %-10s %-6s %-12s %-4d %-10s %-20s",
-                    member.getName(),
-                    member.getAgeGroup(),
-                    member.isActive() ? "Yes" : "No",
-                    member.isCompSwimmer() ? "Yes" : "No",
-                    Fee.calculateFee(member),
-                    member.isInRestance() ? "Yes" : "No",
-                    member.getSwimDisciplines()));
-            writer.newLine();
-        }
-    }
-}
-
-
- */
-
 
     public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {

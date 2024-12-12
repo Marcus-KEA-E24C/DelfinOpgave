@@ -36,9 +36,38 @@ public class TrainingResult {
         this.bestTrainingTimeSeconds = bestTrainingTimeSeconds;
         this.bestTrainingTimeCentiSeconds = bestTrainingTimeCentiSeconds;
         this.date = date;
-        trainingResults.add(this);
+  //      trainingResults.add(this);
 
     }
+
+/**
+
+
+     public static void printTrainingResults() {
+
+     if (juniorBackstroke.isEmpty() && juniorBreaststroke.isEmpty() && juniorButterfly.isEmpty() && juniorCrawl.isEmpty()
+     && seniorBackstroke.isEmpty() && seniorBreaststroke.isEmpty() && seniorButterfly.isEmpty() && seniorCrawl.isEmpty()) {
+     System.out.println("Der er ingen træningsresultater at vise.");
+     } else {
+     System.out.println("Træningsresultater: \n");
+     printList("Junior Backstroke", juniorBackstroke);
+     printList("Junior Breaststroke", juniorBreaststroke);
+     printList("Junior Butterfly", juniorButterfly);
+     printList("Junior Crawl", juniorCrawl);
+     printList("Senior Backstroke", seniorBackstroke);
+     printList("Senior Breaststroke", seniorBreaststroke);
+     printList("Senior Butterfly", seniorButterfly);
+     printList("Senior Crawl", seniorCrawl);
+     }
+     }
+
+     private static void printList(String listName, List<TrainingResult> list) {
+     System.out.println(listName + ":");
+     for (TrainingResult result : list) {
+     System.out.println(result);
+     }
+     }
+
 
 
     public static void printTrainingResults() {
@@ -52,6 +81,11 @@ public class TrainingResult {
         }
 
     }
+
+
+
+**/
+
 
 
 
@@ -82,7 +116,7 @@ public class TrainingResult {
  }
 
 
- System.out.println("Bedste træningstid gemmes i sekunder og centisekunder. \n");
+ System.out.println("Bedste træningstid gemmes i sekunder og centisekunder.");
 
  System.out.println("Indtast bedste træningstid i hele sekunder");
  int bestTrainingTimeSeconds = Integer.parseInt(scanner.nextLine());
@@ -95,6 +129,7 @@ public class TrainingResult {
  String date = scanner.nextLine();
 
         TrainingResult newTrainingResult = new TrainingResult(member, discipline, bestTrainingTimeSeconds, bestTrainingTimeCentiSeconds, date);
+
         if (member.getAgeGroup().equals("JUNIOR")) {
             switch (discipline) {
                 case "backstroke":
@@ -111,11 +146,10 @@ public class TrainingResult {
                     break;
                 default:
                     System.out.println("Ugyldig disciplin");
-                    
-                    /** den er vidst nok ok nu, skal bare lige finde ud af hvor jeg har en fucked curly bracket**/
 
 
-        } else if ((member.getAgeGroup().equals("SENIOR"))) {
+            }
+            }else if ((member.getAgeGroup().equals("SENIOR"))) {
                 switch (discipline) {
                     case "backstroke":
                         seniorBackstroke.add(newTrainingResult);
@@ -153,8 +187,6 @@ public class TrainingResult {
 
                 }
             }
-
-        }
 
         return new TrainingResult(member, discipline, bestTrainingTimeSeconds, bestTrainingTimeCentiSeconds, date);
 
