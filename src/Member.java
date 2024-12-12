@@ -1,10 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 public class Member {
@@ -12,6 +7,7 @@ public class Member {
     private String ageGroup;
     private boolean isActive;
     private boolean isCompSwimmer;
+    private boolean inRestance;
 
     private String ageGroupTeam;
     private List<String> swimDisciplines;
@@ -23,6 +19,18 @@ public class Member {
         this.ageGroup=ageGroup;
         this.isActive=isActive;
         this.isCompSwimmer=isCompSwimmer;
+        this.inRestance = false;
+    }
+    public boolean hasRestance() {
+        // Eksempel: Et medlem er i restance, hvis det ikke er aktivt eller ikke har betalt
+        return !this.isActive();
+    }
+    public boolean isInRestance() {
+        return inRestance;
+    }
+
+    public void setRestance(boolean inRestance) {
+        this.inRestance = inRestance;
     }
 
     public String getAgeGroupTeam()
@@ -99,9 +107,9 @@ public class Member {
             writer.newLine();
 
             for(Member member:members){
-                writer.write(member.getName()+ ";" +
-                        member.getAgeGroup() + ";" +
-                        member.isActive() + ";" +
+                writer.write(member.getName()+ " - " +
+                        member.getAgeGroup() + " - " +
+                        member.isActive() + " - " +
                         member.isCompSwimmer());
                 writer.newLine();
             }
@@ -124,7 +132,7 @@ public class Member {
         return members;
     }
     // Samlet metode til at håndtere oprettelse, gemning og læsning
-    public static void manageMembers(String filename){
+   public static void manageMembers(String filename){
         List<Member> members= new ArrayList<>();
         members.add(new Member("John Doe", "Senior", true, false));
         try{
@@ -142,6 +150,7 @@ public class Member {
         } catch (IOException e) {
             System.out.println("Kunne ikke læse medlemmer fra filen: " + e.getMessage());
         }
+
     }
 
 
@@ -150,6 +159,19 @@ public class Member {
                 "crawl", "backstroke", "breaststroke", "butterfly"
         ));
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return name.equals(member.name); // Sammenlign på et unikt felt, f.eks. navn
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name); // Hash baseret på det unikke felt
+    }
+
 
 
 }

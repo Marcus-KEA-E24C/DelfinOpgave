@@ -1,5 +1,4 @@
-Name;AgeGroup;Active;CompSwimmer;Fee
-Haj;JUNIOR;true;false;1000
-jannick;JUNIOR;true;false;1000
-anna banana;SENIOR;true;true;1600
-Fede Fe;SENIOR;true;false;1600
+Name;AgeGroup;Active;CompSwimmer;Fee;Restance
+jannic;SENIOR;true;true;1600;false;null
+dog;PENSIONIST;true;false;1200;false;null
+diller;PENSIONIST;true;true;1200;false;[crawl]

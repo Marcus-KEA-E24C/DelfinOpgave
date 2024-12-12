@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class CompSwimmerList {
@@ -13,23 +14,40 @@ public class CompSwimmerList {
     }
 
     public void displayCompSwimmers() {
-        boolean found = false;
+
+ List<Member> compSwimmerList = new ArrayList<>();
 
 
         for (Member member : memberList) {
             if (member.isCompSwimmer()) {
-                System.out.println("Medlem: " + member.getName());
-                System.out.println("Aldersgruppe: " + member.getAgeGroup());
-                System.out.println("Aktiv: " + (member.isActive() ? "Ja" : "Nej"));
-                System.out.println("Konkurrencesvømmer: Ja");
-                System.out.println("Svømmediscipliner: " + String.join(", ", member.getSwimDisciplines()));
-                found = true;
+                compSwimmerList.add(member);
             }
         }
 
+if (compSwimmerList.isEmpty()) {
+    System.out.println("Der er ikke registreret noget konkurrencesvømmere. \n");
+} else {
+    for (Member member : memberList) {
+        if (member.isCompSwimmer()) {
+            System.out.println("Medlem: " + member.getName());
+            System.out.println("Aldersgruppe: " + member.getAgeGroup());
+            System.out.println("Aktiv: " + (member.isActive() ? "Ja" : "Nej"));
+            System.out.println("Konkurrencesvømmer: Ja");
 
-        if (!found) {
-            System.out.println("Der er ikke registreret noget konkurrencesvømmere.");
+            List<String> swimDisciplines = member.getSwimDisciplines();
+            if (swimDisciplines == null)
+            {
+                System.out.println("ingen aktive svømmediscipliner registreret");
+                System.out.println("\n");
+            } else {
+                System.out.println("Svømmediscipliner: " + String.join(", ", member.getSwimDisciplines()));
+                System.out.println("\n");
+            }
+
         }
+    }
+}
+
+
     }
 }

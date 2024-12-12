@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +21,7 @@ public class MemberList {
         boolean isActive = true;
         boolean isCompSwimmer = false;
 
-        // Opret en ny Member
+        // Opret et nyt medlem
         Member member = new Member(name, ageGroup, isActive, isCompSwimmer);
 
         // Indtast medlemmets fulde navn
@@ -145,7 +144,18 @@ public class MemberList {
         } else {
             System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
         }
+
     }
+    public void setRestanceForMember(String name, boolean inRestance) {
+        for (Member member : list) {
+            if (member.getName().equalsIgnoreCase(name)) {
+                member.setRestance(inRestance);
+                return; // Stop, når det rigtige medlem er fundet og opdateret
+            }
+        }
+        System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
+    }
+
 
     @Override
     public String toString() {
@@ -174,6 +184,7 @@ public class MemberList {
         } catch (IOException e) {
             System.out.println("Kunne ikke læse medlemmer: " + e.getMessage());
         }
+
     }
 
 }
