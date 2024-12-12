@@ -1,2 +1,4 @@
-Name 	 AgeGroup 	 Active 	 CompSwimmer 	 Fee
-asd 	 SENIOR 	 true 	 false 	 1600
+Name - AgeGroup - Active - CompSwimmer - Fee
+asd - JUNIOR - true - false - 1000
+hej - SENIOR - true - false - 1600
+bo - PENSIONIST - true - false - 1200

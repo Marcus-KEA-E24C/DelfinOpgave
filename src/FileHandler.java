@@ -44,22 +44,21 @@ public static void saveMembersToFile(List<Member> members, String filename) thro
 
     public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write("Name \t AgeGroup \t Active \t CompSwimmer \t Fee");
+            writer.write("Name - AgeGroup - Active - CompSwimmer - Fee");
             writer.newLine();
             for (Member member : members) {
                 int fee = Fee.calculateFee(member); // Beregn kontingentet (fee)
-                writer.write(member.getName() + " \t " +
-                        member.getAgeGroup() + " \t " +
-                        (member.isActive() ? "true" : "false") + " \t " +
-                        (member.isCompSwimmer() ? "true" : "false") + " \t " +
+                writer.write(member.getName() + " - " +
+                        member.getAgeGroup() + " - " +
+                        (member.isActive() ? "true" : "false") + " - " +
+                        (member.isCompSwimmer() ? "true" : "false") + " - " +
                         fee);
                 writer.newLine();
             }
         }
     }
 
-
-       public static List<Member> readMembersFromFile(String filename) throws IOException {
+    public static List<Member> readMembersFromFile(String filename) throws IOException {
         List<Member> members = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -97,7 +96,6 @@ public static void saveMembersToFile(List<Member> members, String filename) thro
 
         return members;
     }
-
 
 
     public static void saveRestanceMembersToFile(List<Member> members, String filename) throws IOException {
