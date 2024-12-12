@@ -1,1 +1,2 @@
-Name;AgeGroup;Active;CompSwimmer;Restance
+Name - AgeGroup - Active - CompSwimmer - Restance
+ko - SENIOR - true - true - true

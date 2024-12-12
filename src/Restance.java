@@ -46,9 +46,9 @@ public class Restance {
         }
     }
 
-    // Metode til at fjerne medlemmer fra restance
+    // Metode til at registrere kontingentbetaling fra medlem
     public void removeRestanceMembers() {
-        System.out.println("Medlemmer med restance:");
+        System.out.println("Medlemmer i restance: ");
         int index = 1;
         for (Member member : memberList.list) {
             if (member.isInRestance()) {
@@ -57,7 +57,7 @@ public class Restance {
             }
         }
 
-        System.out.print("Indtast nummeret på det medlem, der skal fjernes fra restance: ");
+        System.out.print("Indtast nummeret på det medlem, der har betalt kontingent: ");
         int choice = Integer.parseInt(new Scanner(System.in).nextLine());
 
         index = 1;
@@ -74,7 +74,7 @@ public class Restance {
 
         if (memberToRemoveFromRestance != null) {
             memberToRemoveFromRestance.setRestance(false); // Fjern restance-flag
-            System.out.println(memberToRemoveFromRestance.getName() + " er fjernet fra restance.");
+            System.out.println(memberToRemoveFromRestance.getName() + " har betalt deres kontingent og er ikke længere i restance.");
         } else {
             System.out.println("Ugyldigt valg.");
         }
@@ -86,10 +86,10 @@ public class Restance {
         String choice;
 
         do {
-            System.out.println("Håndtering af restance");
-            System.out.println("1. Vis medlemmer med restance");
+            System.out.println("\nHåndtering af restance");
+            System.out.println("1. Vis medlemmer i restance");
             System.out.println("2. Gem restance-medlemmer til fil");
-            System.out.println("3. Fjern restance-medlemmer fra medlemslisten");
+            System.out.println("3. Registrer kontingentbetaling fra medlem");
             System.out.println("4. Sæt medlem i restance");
             System.out.println("x. Gå tilbage til hovedmenuen");
             System.out.println("Indtast dit valg: ");

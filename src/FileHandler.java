@@ -3,32 +3,62 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-    public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
-        List<Member> existingMembers = readMembersFromFile(filename); // Læs eksisterende medlemmer fra filen
+    /*
+public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
+    List<Member> existingMembers = readMembersFromFile(filename); // Læs eksisterende medlemmer fra filen
 
-        // Kombiner eksisterende og nye medlemmer, uden at tilføje dubletter
-        for (Member member : members) {
-            if (!existingMembers.contains(member)) { // Antager, at Member har en korrekt `equals`-metode
-                existingMembers.add(member);
-            }
+    // Kombiner eksisterende og nye medlemmer, uden at tilføje dubletter
+    for (Member member : members) {
+        if (!existingMembers.contains(member)) { // Antager, at Member har en korrekt `equals`-metode
+            existingMembers.add(member);
         }
+    }
 
-        // Skriv alle medlemmer tilbage til filen (overskriv med komplet liste)
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write("Name;AgeGroup;Active;CompSwimmer;Fee;Restance");
+    // Skriv alle medlemmer tilbage til filen (overskriv med komplet liste)
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        // Skriv tabeloverskrift
+        writer.write(String.format("%-20s %-10s %-6s %-12s %-4s %-10s %-20s",
+                "Name", "AgeGroup", "Active", "CompSwimmer", "Fee", "Restance", "Discipline"));
+        writer.newLine();
+        writer.write("=".repeat(85)); // Separator-linje
+        writer.newLine();
+
+        // Skriv data for hvert medlem
+        for (Member member : existingMembers) {
+            writer.write(String.format("%-20s %-10s %-6s %-12s %-4d %-10s %-20s",
+                    member.getName(),
+                    member.getAgeGroup(),
+                    member.isActive() ? "Yes" : "No",
+                    member.isCompSwimmer() ? "Yes" : "No",
+                    Fee.calculateFee(member),
+                    member.isInRestance() ? "Yes" : "No",
+                    member.getSwimDisciplines()));
             writer.newLine();
-            for (Member member : existingMembers) {
-                writer.write(member.getName() + ";" +
-                        member.getAgeGroup() + ";" +
-                        member.isActive() + ";" +
-                        member.isCompSwimmer() + ";" +
-                        Fee.calculateFee(member) + ";" +
-                        member.isInRestance() + ";" +
-                        member.getSwimDisciplines());
+        }
+    }
+}
+
+     */
+
+
+
+    public static void saveMembersToFile(List<Member> members, String filename) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            writer.write("Name \t AgeGroup \t Active \t CompSwimmer \t Fee");
+            writer.newLine();
+            for (Member member : members) {
+                int fee = Fee.calculateFee(member); // Beregn kontingentet (fee)
+                writer.write(member.getName() + " \t " +
+                        member.getAgeGroup() + " \t " +
+                        (member.isActive() ? "true" : "false") + " \t " +
+                        (member.isCompSwimmer() ? "true" : "false") + " \t " +
+                        fee);
                 writer.newLine();
             }
         }
     }
+
+
 
 
     public static List<Member> readMembersFromFile(String filename) throws IOException {
@@ -122,7 +152,7 @@ public class FileHandler {
 */
     public static void saveRestanceMembersToFile(List<Member> members, String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write("Name;AgeGroup;Active;CompSwimmer;Restance");
+            writer.write("Name - AgeGroup - Active - CompSwimmer - Restance");
             writer.newLine();
             for (Member member : members) {
                 if (member.isInRestance()) { // Tjek restance-flag
@@ -150,7 +180,7 @@ public class FileHandler {
                     continue;
                 }
 
-                String[] parts = line.split(";");
+                String[] parts = line.split(" - ");
                 if (parts.length < 6) {
                     System.out.println("Advarsel: Linjen er forkert formateret og bliver sprunget over: " + line);
                     continue;

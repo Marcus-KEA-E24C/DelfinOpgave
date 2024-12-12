@@ -161,9 +161,10 @@ public class ConsoleHandler {
                 case "3":
 
                     System.out.println("\nKonkurrencesvømmeroversigt");
+
                     System.out.println("1. Se konkurrencesvømmeres info");
-                    System.out.println("2. Træningstider");
-                    System.out.println("3. Konkurrencetider");
+                    System.out.println("2. Træningsresultater");
+                    System.out.println("3. Konkurrenceresultater");
                     System.out.println("x Gå tilbage");
 
 
@@ -196,10 +197,10 @@ public class ConsoleHandler {
                                  // vis træningsresultater, sorter efter laveste tid, cut af efter top 5
 
 
+                                    break;
+                              case "2":
 
-                                case "2":
-
-                                    System.out.println("Indtast træningsresultat for konkurrencesvømmeren:");
+//                                    System.out.println("Indtast træningsresultat for konkurrencesvømmeren:");
 
                                     TrainingResult result = TrainingResult.enterTrainingResult();
                                     if (result != null) {
@@ -208,6 +209,7 @@ public class ConsoleHandler {
                                         System.out.println("Træningsresultater kunne ikke gemmes.");
                                     }
                                     break;
+
                                     
                             }
 
@@ -251,7 +253,7 @@ public class ConsoleHandler {
                         System.out.println("\nHåndtering af restance");
                         System.out.println("1. Vis medlemmer med restance");
                         System.out.println("2. Gem restance-medlemmer til fil");
-                        System.out.println("3. Fjern restance-medlemmer");
+                        System.out.println("3. Registrer betaling fra medlem");
                         System.out.println("4. Sæt medlem i restance");
                         System.out.println("5. Nulstiller betalingsstatus for alle medlemmer");
                         System.out.println("x. Gå tilbage til hovedmenuen");
