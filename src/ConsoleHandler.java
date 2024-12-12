@@ -196,6 +196,8 @@ public class ConsoleHandler {
 
                                  // vis træningsresultater, sorter efter laveste tid, cut af efter top 5
 
+                                TrainingResult.printTrainingResults();
+
 
                                     break;
                               case "2":

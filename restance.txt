@@ -1,2 +1,2 @@
 Name - AgeGroup - Active - CompSwimmer - Restance
-ko - SENIOR - true - true - true
+hjh - SENIOR - true - false - true

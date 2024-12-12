@@ -1,2 +1,2 @@
 Name 	 AgeGroup 	 Active 	 CompSwimmer 	 Fee
-test 	 JUNIOR 	 true 	 true 	 1000
+asd 	 SENIOR 	 true 	 false 	 1600

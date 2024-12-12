@@ -29,6 +29,7 @@ public class MemberList {
         name = scanner.nextLine();
         member.setName(name);
 
+
         // Indtast aldersgruppe med korrekt validering
         boolean validInput = false;
         while (!validInput) {
@@ -89,6 +90,7 @@ public class MemberList {
 
         // Tilføj medlem til listen
         list.add(member);
+
         System.out.println("Medlem tilføjet: " + member);
     }
 
