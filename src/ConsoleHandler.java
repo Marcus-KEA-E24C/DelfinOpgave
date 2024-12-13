@@ -277,6 +277,9 @@ public class ConsoleHandler {
                 case "6":
                     trainingResult.saveCompSwimmerResultsToFile("trainingresult.txt");
                     break;
+                case"x":
+                    trainingMenuRunning=false;
+                    break;
                 case "7":
                     boolean raceMenuRunning = true;
                     while (raceMenuRunning) {
@@ -285,7 +288,7 @@ public class ConsoleHandler {
                         System.out.println("2. Vis alle konkurrenceresultater");
                         System.out.println("3. Vis top 5 konkurrencetider");
                         System.out.println("4. Slet konkurencetid");
-                        System.out.println("x. Tilbage til hovedmenu");
+                        System.out.println("x. Tilbage til Træningsresultater");
                         String raceChoice = scanner.nextLine();
 
 
