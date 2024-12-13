@@ -76,11 +76,6 @@ public class MemberList {
                 member.setIsCompSwimmer(false);
             }
 
-
-            /** mulighed for at tilføje svømmediscipliner her
-             **/
-
-
             break;
 
         }
@@ -174,5 +169,14 @@ public class MemberList {
             }
             System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
         }
+    public void setRestanceForMember(String name, boolean inRestance) {
+        for (Member member : list) {
+            if (member.getName().equalsIgnoreCase(name)) {
+                member.setRestance(inRestance);
+                return; // Stop, når det rigtige medlem er fundet og opdateret
+            }
+        }
+        System.out.println("Medlem med navnet " + name + " blev ikke fundet.");
+    }
     }
 

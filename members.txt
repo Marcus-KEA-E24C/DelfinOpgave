@@ -1,7 +1,19 @@
 Name;AgeGroup;Active;CompSwimmer;Fee
-Hold nu kæft;SENIOR;true;true;1600
 jashd;PENSIONIST;true;false;1200
-asd;SENIOR;true;true;1600
 vcxxgfhfgc;SENIOR;true;true;1600
-xcv;PENSIONIST;true;false;1200
 trdftyrdtf;SENIOR;true;true;1600
+hadsk;JUNIOR;true;false;1000
+Marcus;SENIOR;true;true;1600
+testy;JUNIOR;true;true;1000
+Fede Fe;SENIOR;true;false;1600
+test2;JUNIOR;true;true;1000
+test3;JUNIOR;true;true;1000
+test4;JUNIOR;true;true;1000
+test5;JUNIOR;true;true;1000
+test6;JUNIOR;true;true;1000
+test7;JUNIOR;true;true;1000
+test8;SENIOR;true;true;1600
+test9;SENIOR;true;true;1600
+test10;SENIOR;true;true;1600
+test11;SENIOR;true;true;1600
+test12;SENIOR;true;true;1600

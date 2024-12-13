@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Member {
     private String name;
@@ -9,7 +7,7 @@ public class Member {
     private boolean isActive;
     private boolean isCompSwimmer;
     private boolean feeType;
-
+    private boolean inRestance;
     private String ageGroupTeam;
     private List<String> swimDisciplines;
 
@@ -19,7 +17,19 @@ public class Member {
         this.ageGroup = ageGroup;
         this.isActive = isActive;
         this.isCompSwimmer = isCompSwimmer;
+        this.inRestance=false;
 
+    }
+    public boolean hasRestance() {
+        // Eksempel: Et medlem er i restance, hvis det ikke er aktivt eller ikke har betalt
+        return !this.isActive();
+    }
+    public boolean isInRestance() {
+        return inRestance;
+    }
+
+    public void setRestance(boolean inRestance) {
+        this.inRestance = inRestance;
     }
 
     public String getAgeGroupTeam() {
@@ -66,6 +76,14 @@ public class Member {
 
     }
 
+    public boolean isCompetitiveSwimmer() {
+        return isCompSwimmer;
+    }
+
+    public class SwimDisciplineUtil {
+        public static final Set<String> VALID_DISCIPLINES = new HashSet<>(Arrays.asList(
+                "crawl", "backstroke", "breaststroke", "butterfly"));
+    }
 
     public void setAgeGroupTeam(String ageGroupTeam) {
         if (isCompSwimmer) {
@@ -82,6 +100,7 @@ public class Member {
         } else {
             throw new IllegalStateException("Swim disciplines only applicable to comp swimmers");
         }
+
 
     }
 
