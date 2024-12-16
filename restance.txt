@@ -1,0 +1,6 @@
+Name - AgeGroup - Active - CompSwimmer - Restance
+jashd;PENSIONIST;true;false;true
+vcxxgfhfgc;SENIOR;true;true;true
+trdftyrdtf;SENIOR;true;true;true
+hadsk;JUNIOR;true;false;true
+Marcus;SENIOR;true;true;true

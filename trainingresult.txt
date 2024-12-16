@@ -1,0 +1,8 @@
+Name;Discipline;Time
+testy;Junior Brystsvømning;89.11
+test2;Junior Brystsvømning;34.45
+test4;Junior Brystsvømning;84.54
+test5;Junior Brystsvømning;36.45
+test6;Junior Brystsvømning;39.34
+test7;Junior Brystsvømning;25.45
+marcus;Junior Butterfly;12.0

@@ -1,0 +1,10 @@
+Name;Discipline;Time
+testy;Junior Brystsvømning;23.11
+test1;Junior Brystsvømning;43.34
+test2;Junior Brystsvømning;43.23
+test3;Junior Brystsvømning;93.45
+test4;Junior Brystsvømning;93.58
+test5;Junior Brystsvømning;92.83
+test6;Junior Brystsvømning;23.42
+test12;Junior Crawl;1.23
+test7;Junior Crawl;1.99
